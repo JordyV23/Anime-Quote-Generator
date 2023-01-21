@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <Header title="The anime quoter"/>
-    <Quote />
+    <Quote :quote="quote"/>
   </div>
 </template>
 
@@ -15,6 +15,16 @@ export default {
     Header,
     Quote
   },
+  data(){
+    return{
+      quote:{
+        content: "Content goes here",
+        anime:"Jujutsu Kaisen",
+        character: "Itadori Midoriya"
+      },
+      quotes:[]
+    }
+  }
 };
 </script>
 
