@@ -7,25 +7,27 @@
     </div>
   </div>
 
-  {{ this.quotes }}
+  <QuoteList :quotes="quotes"/>
 </template>
 
 <script>
 import Header from "./components/HeaderComponent.vue";
 import Quote from "./components/QuoteComp.vue";
+import QuoteList from "./components/QuoteList.vue";
 
 export default {
   name: "App",
   components: {
     Header,
     Quote,
+    QuoteList
   },
   data() {
     return {
       quote: {
-        content: "Content goes here",
-        anime: "Jujutsu Kaisen",
-        character: "Itadori Midoriya",
+        content: "",
+        anime: "",
+        character: "",
       },
       quotes: [],
     };
@@ -48,7 +50,7 @@ export default {
   },
 
   created() {
-    //this.getQuote();
+    this.getQuote();
   },
 };
 </script>
