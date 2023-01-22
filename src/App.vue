@@ -7,20 +7,24 @@
     </div>
   </div>
 
-  <QuoteList :quotes="quotes"/>
+  <QuoteList :quotes="quotes" />
+
+  <Footer />
 </template>
 
 <script>
 import Header from "./components/HeaderComponent.vue";
 import Quote from "./components/QuoteComp.vue";
 import QuoteList from "./components/QuoteList.vue";
+import Footer from "./components/MyFooter.vue";
 
 export default {
   name: "App",
   components: {
     Header,
     Quote,
-    QuoteList
+    QuoteList,
+    Footer,
   },
   data() {
     return {
