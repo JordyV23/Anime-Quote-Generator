@@ -30,9 +30,9 @@ export default {
   data() {
     return {
       quote: {
-        content: "I would come up there and finish you off. If you didn't look half dead already.",
-        anime: "Inuyasha",
-        character: "Inuyasha",
+        content: "",
+        anime: "",
+        character: "",
       },
       quotes: [],
       idiom: "en|es",
@@ -68,7 +68,7 @@ export default {
   },
 
   created() {
-    //this.getQuote();
+    this.getQuote();
   },
 };
 </script>
