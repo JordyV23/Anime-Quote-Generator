@@ -1,9 +1,10 @@
 <template>
   <div class="app">
-    <Header title="The anime quoter" />
+    <Header title="Frasanime" />
     <Quote :quote="quote" />
     <div class="button-container">
-      <button @click="getQuote">Generete</button>
+      <button @click="getQuote" class="button">Generar</button>
+      <button @click="translate" class="button">Traducir</button>
     </div>
   </div>
 
@@ -29,19 +30,20 @@ export default {
   data() {
     return {
       quote: {
-        content: "",
-        anime: "",
-        character: "",
+        content: "I would come up there and finish you off. If you didn't look half dead already.",
+        anime: "Inuyasha",
+        character: "Inuyasha",
       },
       quotes: [],
+      idiom: "en|es",
     };
   },
   methods: {
     async getQuote() {
+      this.idiom = "en|es";
       if (this.quote.content) {
         this.quotes = [...this.quotes, this.quote];
       }
-
       const data = await fetch("https://animechan.vercel.app/api/random").then(
         (res) => res.json()
       );
@@ -51,10 +53,22 @@ export default {
         character: data.character,
       };
     },
+
+    async translate() {
+      const data = await fetch(
+        `https://api.mymemory.translated.net/get?q=${this.quote.content}&langpair=${this.idiom}`
+      ).then((res) => res.json());
+      this.quote = {
+        content: data.responseData.translatedText,
+        anime: this.quote.anime,
+        character: this.quote.character,
+      };
+      this.idiom = this.idiom == "es|en" ?  "en|es" :  "es|en";
+    },
   },
 
   created() {
-    this.getQuote();
+    //this.getQuote();
   },
 };
 </script>
@@ -82,12 +96,13 @@ export default {
   padding: 0px;
   margin: 64px auto;
 
-  button {
+  .button {
     border: none;
     outline: none;
     background-color: var(--primary);
 
     padding: 16px 32px;
+    margin: 8px;
     border-radius: 99px;
     color: var(--light);
     font-size: 28px;
