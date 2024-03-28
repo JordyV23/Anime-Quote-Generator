@@ -44,7 +44,7 @@ export default {
       if (this.quote.content) {
         this.quotes = [...this.quotes, this.quote];
       }
-      const data = await fetch("https://animechan.vercel.app/api/random").then(
+      const data = await fetch("https://animechan.xyz/api/random").then(
         (res) => res.json()
       );
       this.quote = {
